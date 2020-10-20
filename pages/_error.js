@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { withTranslation } from "../i18n";
+import { withTranslation } from "../core/i18n/i18n";
 
 const Error = ({ statusCode, t }) => (
   <p>
