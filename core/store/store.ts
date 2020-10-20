@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, AnyAction } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunkMiddleware from "redux-thunk";
 import { LoadState } from "../../common/loadState";
-import { IProductsState } from "./products/ProductsState";
+import { IProductsState, productsInitialState } from "./products/ProductsState";
 import { createMainReduce } from "./reducers";
 import { HYDRATE, createWrapper } from "next-redux-wrapper";
 
@@ -12,9 +12,12 @@ export interface IReduxState {
 }
 
 export interface IAppState {
-  products?: IProductsState;
+  products: IProductsState;
 }
 
+const initialState: IAppState = {
+  products: productsInitialState,
+};
 const reducers = createMainReduce();
 
 const reducer = (state: IAppState | undefined, action: AnyAction) => {
@@ -35,6 +38,7 @@ export interface IExtraArguments {}
 function makeStore() {
   return createStore(
     reducer,
+    initialState,
     composeWithDevTools(
       applyMiddleware(thunkMiddleware.withExtraArgument<IExtraArguments>({}))
     )

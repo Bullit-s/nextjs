@@ -1,17 +1,18 @@
 import { SimpleThunk } from "../../../common/simpleThunk";
 import { ProductsActions } from "./ProductsActions";
-import {
-  IProductsRequestParams,
-  IProducts,
-} from "../../../interfaces/products/IProducts";
+import { IProductsRequestParams } from "../../../interfaces/products/IProducts";
+import ApiClient from "../../apiClient/apiClient";
 
 export const ProductsAsyncActions = {
   getProducts(params: IProductsRequestParams): SimpleThunk {
     return async (dispatch, _, {}) => {
       try {
-        const result = { properties: { cnt: "1" } } as IProducts;
         dispatch(ProductsActions.getProducts.started(params));
-        dispatch(ProductsActions.getProducts.done({ params, result }));
+        const apiClient = new ApiClient();
+        const response = await apiClient.getProducts(params);
+        dispatch(
+          ProductsActions.getProducts.done({ params, result: response.data })
+        );
       } catch (error) {
         const { message } = error;
         console.error("Error: ", message);

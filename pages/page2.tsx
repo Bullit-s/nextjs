@@ -7,7 +7,6 @@ import { Button } from "antd";
 import { wrapper } from "../core/store/store";
 
 const IndexPage = ({ t, props }: any) => {
-  console.log(props);
   return (
     <>
       <h1>Hello Next.js 👋</h1>{" "}

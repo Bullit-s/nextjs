@@ -1,11 +1,13 @@
 import { actionCreator } from "../common/actionCreator";
 import {
   IProductsRequestParams,
-  IProducts,
+  IProductsResponse,
 } from "../../../interfaces/products/IProducts";
 
 export const ProductsActions = {
-  getProducts: actionCreator.async<IProductsRequestParams, IProducts, Error>(
-    "PRODUCTS/GET_PRODUCTS"
-  ),
+  getProducts: actionCreator.async<
+    IProductsRequestParams,
+    IProductsResponse,
+    Error
+  >("PRODUCTS/GET_PRODUCTS"),
 };

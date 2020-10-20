@@ -6,7 +6,8 @@ import { productsInitialState, IProductsState } from "./ProductsState";
 import { LoadState } from "../../../common/loadState";
 import {
   IProductsRequestParams,
-  IProducts,
+  IProduct,
+  IProductsResponse,
 } from "../../../interfaces/products/IProducts";
 
 function startHandler(state: IProductsState): IProductsState {
@@ -27,7 +28,7 @@ const failureHandler = (
 
 const doneGetProductsHandler = (
   state: IProductsState,
-  { result }: Success<IProductsRequestParams, IProducts>
+  { result }: Success<IProductsRequestParams, IProductsResponse>
 ) => {
   return newState(state, {
     data: result,

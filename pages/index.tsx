@@ -3,13 +3,11 @@ import { withTranslation, i18n } from "../core/i18n/i18n";
 import styled from "astroturf";
 import { Button } from "antd";
 import { ProductsAsyncActions } from "../core/store/products/ProductsAsyncActions";
-import { IProductsRequestParams } from "../interfaces/products/IProducts";
-import { IAppState, wrapper } from "../core/store/store";
 import { useSelector } from "react-redux";
+import { productsDataSelector } from "../core/store/products/ProductsSelectors";
 
 const IndexPage = ({ t }: any) => {
-  const { products } = useSelector<IAppState, IAppState>((state) => state);
-  console.log(products);
+  const { data } = useSelector(productsDataSelector);
   return (
     <>
       <h1>Hello Next.js 👋</h1>{" "}
@@ -26,6 +24,9 @@ const IndexPage = ({ t }: any) => {
           <CustomLink>{t("text")}</CustomLink>
         </Link>
       </p>
+      {data?.product?.map((product) => (
+        <div key={product.id}>{product.name}</div>
+      ))}
     </>
   );
 };
@@ -35,11 +36,11 @@ const CustomLink = styled.a`
 `;
 
 IndexPage.getInitialProps = async ({ store, req }: any) => {
-  if (req) {
-    await store.dispatch(
-      ProductsAsyncActions.getProducts({} as IProductsRequestParams)
-    );
-  }
+  const { params } = store.getState().products;
+  req
+    ? await store.dispatch(ProductsAsyncActions.getProducts(params))
+    : store.dispatch(ProductsAsyncActions.getProducts(params));
+
   return {
     namespacesRequired: ["common"],
   };

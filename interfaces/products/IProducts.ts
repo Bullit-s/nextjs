@@ -15,19 +15,24 @@ import { IPages } from "../IPages";
 // }
 
 export interface IProductsRequestParams {
+  category_id: number;
   pages: IProductPages;
   products: IProductRequestParams;
-  order: string;
+  // order: string;
+  lang: "ru-RU" | "en-US";
 }
 
 export interface IProductsResponse {
   retval: IElementValue;
   retdesc?: IElementValue;
-  categories: ICategories; //путь к выбранной категории
-  seller: IElementId;
-  pages: IPages; // параметры страниц
-  subcategories: {};
-  products: IProducts; //параметры списка товаров
+  lang?: "ru-RU" | "en-US";
+  totalPages?: string;
+  totalItems?: string;
+  breadCrumbs: IElementIdName[];
+  // categories: ICategories; //путь к выбранной категории
+  // pages: IPages; // параметры страниц
+  // subcategories: {};
+  product?: IProduct[]; //параметры списка товаров
 }
 
 export interface IProductInfo {
@@ -54,31 +59,35 @@ export interface IProductInfo {
   breadCrumbs: IElementIdName[];
 }
 
-export interface IProducts {
-  properties: IElementCnt; //атрибут cnt-количество страниц
-  order: IElementValue; //
-  currency: IElementValue; //
-  product: IProduct[] | IProduct;
-}
+// export interface IProducts {
+//   properties: IElementCnt; //атрибут cnt-количество страниц
+//   order: IElementValue; //
+//   currency: IElementValue; //
+//   product: IProduct[] | IProduct;
+// }
 
 export interface IProduct {
-  properties: IImageInfo; //параметры товара
-  id: IElementValue; //идентификатор товара
-  name: IElementData; //название товара
-  info: IElementData; //описание товара
-  price: IElementValue; //стоимость товара
-  base_price: IElementValue; //цена в базовой валюте, установленной продавцом
-  base_currency: IElementValue; // базовая валюта
-  price_rub: IElementValue; //
-  price_usd: IElementValue; //
-  price_eur: IElementValue; //
-  price_uah: IElementValue; //
-  partner_comiss: IElementValue; //партнерское вознаграждение %
-  collection: IElementValue; //вид содержимого товара digi | pins | unit | book | soft
-  in_stock: IElementValue; //доступность товара
-  num_in_stock: IElementValue; //доступное для оплаты количество единиц товара
-  has_discount: IElementValue; //скидка постоянным покупателям
-  id_present: IElementValue; // ID товара-подарка
+  id: string; //идентификатор товара
+  name: string; //название товара
+  cntImg: string; //количество изображений
+  info: string; //описание товара
+  price: string; //стоимость товара
+  base_price: string; //цена в базовой валюте, установленной продавцом
+  base_currency: string; // базовая валюта
+  currency: string; //Валюта
+  price_rub: string; //
+  price_usd: string; //
+  price_eur: string; //
+  price_uah: string; //
+  partner_comiss: string; //партнерское вознаграждение %
+  agency_id: string;
+  collection: "digi" | "pins" | "unit" | "book" | "soft"; //вид содержимого товара digi | pins | unit | book | soft
+  num_in_stock: 0 | 1; //доступное для оплаты количество единиц товара
+  is_available: 0 | 1; //доступность товара
+  has_discount: 0 | 1; //скидка постоянным покупателям
+  id_present: 0 | number; // ID товара-подарка 0 не задан
+  sale_info: any;
+  label: any;
 }
 
 export interface IProductPages {

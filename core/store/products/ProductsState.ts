@@ -1,13 +1,22 @@
 import { LoadState } from "../../../common/loadState";
 import { IReduxState } from "../store";
-import { IProducts } from "../../../interfaces/products/IProducts";
+import {
+  IProductsRequestParams,
+  IProductsResponse,
+} from "../../../interfaces/products/IProducts";
 
 export interface IProductsState extends IReduxState {
-  data: IProducts;
   loadState: LoadState;
+  params: IProductsRequestParams;
+  data?: IProductsResponse;
 }
 
 export const productsInitialState: IProductsState = {
-  data: {} as IProducts,
   loadState: LoadState.needLoad,
+  params: {
+    category_id: 0,
+    pages: { num: 1, rows: 20 },
+    products: { order: "", currency: "RUR" },
+    lang: "ru-RU",
+  },
 };
