@@ -1,10 +1,5 @@
-import { ICategories } from "../category/ICategory";
-import { IElementCnt } from "../IElementCnt";
-import { IElementData } from "../IElementData";
-import { IElementId } from "../IElementId";
 import { IElementIdName } from "../IElementIdName";
 import { IElementValue } from "../IElementValue";
-import { IPages } from "../IPages";
 
 // export interface IState {
 //   productLoader: boolean;
@@ -104,12 +99,12 @@ export interface IProductRequestParams {
   currency: string; //USD, RUR, EUR или UAH
 }
 
-interface IImageInfo {
-  img: string;
-  icon: string;
-  //   	атрибут img - наличие/отсутствие (yes/no) картинки предварительного просмотра
-  // атрибут icon - наличие знака "скидка" (sale), "новинка" (new), "популярный товар" (top
-}
+// interface IImageInfo {
+//   img: string;
+//   icon: string;
+//   //   	атрибут img - наличие/отсутствие (yes/no) картинки предварительного просмотра
+//   // атрибут icon - наличие знака "скидка" (sale), "новинка" (new), "популярный товар" (top
+// }
 
 interface IDiscount {
   summa: string;

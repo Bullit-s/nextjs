@@ -6,7 +6,7 @@ import { Button } from "antd";
 // import { IProductsRequestParams } from "../interfaces/products/IProducts";
 import { wrapper } from "../core/store/store";
 
-const IndexPage = ({ t, props }: any) => {
+const IndexPage = ({ t }: any) => {
   return (
     <>
       <h1>Hello Next.js 👋</h1>{" "}

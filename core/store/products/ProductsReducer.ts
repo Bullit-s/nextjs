@@ -6,7 +6,6 @@ import { productsInitialState, IProductsState } from "./ProductsState";
 import { LoadState } from "../../../common/loadState";
 import {
   IProductsRequestParams,
-  IProduct,
   IProductsResponse,
 } from "../../../interfaces/products/IProducts";
 

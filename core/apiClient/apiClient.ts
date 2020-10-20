@@ -1,11 +1,10 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { IPages } from "../../interfaces/IPages";
 import {
   IProductsRequestParams,
   IProductsResponse,
 } from "../../interfaces/products/IProducts";
 import config from "./config";
-const convert = require("xml-js");
+// const convert = require("xml-js");
 
 interface Options {
   method?: "get" | "post";
